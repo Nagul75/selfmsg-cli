@@ -1,7 +1,7 @@
 [project]
 name = "selfmsg-cli"
 version = "0.1.0"
-description = "Add your description here"
+description = "A self messaging CLI application that connects to your android"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -9,3 +9,10 @@ dependencies = [
     "flask>=3.1.2",
     "requests>=2.32.5",
 ]
+
+[project.scripts]
+selfmsg-cli = "selfmsg_cli.cli:cli"
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
