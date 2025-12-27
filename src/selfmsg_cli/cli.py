@@ -24,16 +24,13 @@ def check():
     """Check server connection health"""
     logger.info("Connection health check started")
     client.check_health()
+    logger.info("Connection health check finished")
 
 
 @cli.command()
-@click.option("--count", default=1, help="Number of greetings.")
-@click.option("--name", prompt="Your name", help="The person to greet")
-def test(count: int, name: str):
-    logger.info("start test")
-    """Print Hello, <name> <count> times"""
-    client.test()
-    for x in range(count):
-        click.echo(f"Hello, {name}!")
-
-    logger.info("end test")
+@click.option("--content", required=True, help="Message to be sent.")
+def send_message(content: str):
+    """Send Message"""
+    logger.info("Send Message process started")
+    client.send_message(content=content)
+    logger.info("Send Message process finished")

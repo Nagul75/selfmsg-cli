@@ -17,3 +17,19 @@ def check_health():
     else:
         logger.error("Health Check - Failure")
         click.echo("Something went wrong...")
+
+
+def send_message(content: str):
+    click.echo("Sending message ...")
+    logger.info("Making POST request /messages")
+    url = f"http://{config.HOST}:{config.PORT}/messages"
+    body = {"type": "text", "sender": "cli", "content": content}
+    res = requests.post(url, json=body)
+    if res.status_code == 201:
+        logger.info("POST request /messages successful")
+        click.echo("Message sent")
+        click.echo(res.json())
+    else:
+        logger.info("POST request /messages failed")
+        click.echo("Error sending message")
+        click.echo(res.json())
